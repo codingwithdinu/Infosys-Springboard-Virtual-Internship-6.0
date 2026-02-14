@@ -1,6 +1,9 @@
 import os
 import pickle
 from flask import Flask, render_template, request
+from flask import jsonify
+
+
 
 app = Flask(__name__)
 
@@ -87,6 +90,30 @@ def predict():
         result=result,
         history=prediction_history
     )
+
+
+@app.route("/api/predict", methods=["POST"])
+def api_predict():
+    data = request.get_json()
+    email_text = data.get("email", "")
+
+    # Category prediction
+    cat_vector = category_vectorizer.transform([email_text])
+    category_id = category_model.predict(cat_vector)[0]
+    category = CATEGORY_MAPPING.get(category_id, "Unknown")
+    cat_conf = max(category_model.predict_proba(cat_vector)[0]) * 100
+
+    # Urgency prediction
+    urg_vector = urgency_vectorizer.transform([email_text])
+    urgency = urgency_model.predict(urg_vector)[0]
+    urg_conf = max(urgency_model.predict_proba(urg_vector)[0]) * 100
+
+    return jsonify({
+        "category": category,
+        "category_confidence": round(cat_conf, 2),
+        "urgency": urgency,
+        "urgency_confidence": round(urg_conf, 2)
+    })
 
 
 if __name__ == "__main__":
