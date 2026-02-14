@@ -1,35 +1,35 @@
-AI_Email_Classifier/
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│
-├── notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_model_training.ipynb
-│
-├── src/
-│   ├── preprocess.py
-│   ├── feature_engineering.py
-│   ├── train_model.py
-│   ├── evaluate_model.py
-│   ├── predict.py
-│
-├── models/
-│   ├── trained_model.pkl
-│   ├── vectorizer.pkl
-│
-├── app/
-│   ├── templates/
-│   │   ├── index.html
-│   │   └── result.html
-│   │
-│   ├── static/
-│   │   ├── style.css
-│   │   └── script.js
-│   │
-│   └── app.py
-│
-├── requirements.txt
-├── README.md
-└── main.py
+- AI_Email_Classifier/
+- │
+- ├── data/
+- │   ├── raw/
+- │   ├── processed/
+- │
+- ├── notebooks/
+- │   ├── 01_data_exploration.ipynb
+- │   ├── 02_model_training.ipynb
+- │
+- ├── src/
+- │   ├── preprocess.py
+- │   ├── feature_engineering.py
+- │   ├── train_model.py
+- │   ├── evaluate_model.py
+- │   ├── predict.py
+- │
+- ├── models/
+- │   ├── trained_model.pkl
+- │   ├── vectorizer.pkl
+- │
+- ├── app/
+- │   ├── templates/
+- │   │   ├── index.html
+- │   │   └── result.html
+- │   │
+- │   ├── static/
+- │   │   ├── style.css
+- │   │   └── script.js
+- │   │
+- │   └── app.py
+- │
+- ├── requirements.txt
+- ├── README.md
+- └── main.py

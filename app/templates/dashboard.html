@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Email Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 40px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .high {
+            color: red;
+            font-weight: bold;
+        }
+
+        .medium {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .low {
+            color: green;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>AI Powered Smart Email Dashboard</h2>
+
+<div class="card">
+    <h3>Prediction Result</h3>
+
+    <p><strong>Category:</strong>
+        {{ result.category }} ({{ result.cat_conf }}%)
+    </p>
+
+    {% if result.urgency == "High" %}
+        <p><strong>Urgency:</strong>
+            <span class="high">{{ result.urgency }}</span>
+            ({{ result.urg_conf }}%)
+        </p>
+    {% elif result.urgency == "Medium" %}
+        <p><strong>Urgency:</strong>
+            <span class="medium">{{ result.urgency }}</span>
+            ({{ result.urg_conf }}%)
+        </p>
+    {% else %}
+        <p><strong>Urgency:</strong>
+            <span class="low">{{ result.urgency }}</span>
+            ({{ result.urg_conf }}%)
+        </p>
+    {% endif %}
+</div>
+
+<h3>Prediction History</h3>
+
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Category</th>
+        <th>Urgency</th>
+    </tr>
+
+    {% for item in history %}
+    <tr>
+        <td>{{ item.email }}</td>
+        <td>{{ item.category }}</td>
+
+        {% if item.urgency == "High" %}
+            <td class="high">{{ item.urgency }}</td>
+        {% elif item.urgency == "Medium" %}
+            <td class="medium">{{ item.urgency }}</td>
+        {% else %}
+            <td class="low">{{ item.urgency }}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/">Classify Another Email</a>
+
+</body>
+</html>

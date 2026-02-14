@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Email Classifier</title>
+    <style>
+body {
+    font-family: Arial;
+    background-color: #f4f6f9;
+    margin: 40px;
+}
+textarea {
+    width: 100%;
+    padding: 10px;
+}
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+    <h2>AI Powered Smart Email Classifier</h2>
+
+    <form action="/predict" method="post">
+        <textarea name="email" rows="6" cols="60"
+        placeholder="Enter email text here..." required></textarea><br><br>
+        <button type="submit">Classify Email</button>
+    </form>
+</body>
+</html>
