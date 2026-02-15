@@ -1,5 +1,5 @@
-from datasets import load_dataset
 import pandas as pd
+import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, accuracy_score
@@ -7,14 +7,15 @@ from sklearn.model_selection import cross_val_score
 import pickle
 from evaluate_model import evaluate_model, plot_confusion_matrix
 
-
 # -----------------------------
-# Load dataset
+# Load local dataset
 # -----------------------------
-dataset = load_dataset("jason23322/high-accuracy-email-classifier")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+df = pd.read_csv(os.path.join(BASE_DIR, "data", "processed", "train_with_urgency.csv"))
 
-train_df = pd.DataFrame(dataset["train"])
-test_df = pd.DataFrame(dataset["test"])
+# Split into train/test (80/20)
+train_df = df.sample(frac=0.8, random_state=42)
+test_df = df.drop(train_df.index)
 
 
 # -----------------------------
